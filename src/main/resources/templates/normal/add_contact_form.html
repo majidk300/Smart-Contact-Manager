@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+
+<head>
+
+	<meta charset="UTF-8" />
+	<title></title>
+
+</head>
+
+<body>
+
+	<section>
+
+		<div class="card mr-3 ml-3">
+
+			<div class="card-body">
+
+				<h1 class="text-center">Add Contact</h1>
+
+				<div class="container-fluid mt-1">
+
+					<div class="row">
+
+						<div class="col-md-8 offset-md-2">
+
+							<form novalidate th:action="@{/user/process-contact}" action="#" th:object="${contact}"
+								enctype="multipart/form-data" method="post" class="mt-2">
+
+								<!--First Name-->
+								<div class="input-group">
+
+									<div class="input-group-prepend">
+
+										<div class="input-group-text">
+											<i class="fa fa-plus"></i>
+										</div>
+
+
+
+									</div>
+
+									<input type="text" id="firstName" name="name" placeholder="Enter name here"
+										th:classappend="${#fields.hasErrors('name')? 'is-invalid':''}"
+										th:value="${contact.name}" class="form-control">
+
+									<div class="invalid-feedback ml-2" th:each="e:${#fields.errors('name')}"
+										th:text="${e}"></div>
+
+								</div>
+
+								<!--Second Name-->
+								<div class="input-group mt-3">
+
+									<div class="input-group-prepend">
+
+										<div class="input-group-text">
+											<i class="fas fa-user-alt"></i>
+										</div>
+
+									</div>
+
+									<input type="text" id="secondName" name="secondName"
+										placeholder="Enter Nick name here"
+										th:classappend="${#fields.hasErrors('secondName')? 'is-invalid':''}"
+										th:value="${contact.secondName}" class="form-control" />
+
+									<div class="invalid-feedback ml-2" th:each="e:${#fields.errors('secondName')}"
+										th:text="${e}"></div>
+
+								</div>
+
+
+								<!--Phone Field-->
+								<div class="input-group mt-3">
+
+									<div class="input-group-prepend">
+
+										<div class="input-group-text">
+											<i class="fa fa-phone"></i>
+										</div>
+
+									</div>
+
+									<input type="number" id="phone" name="phone" placeholder="Enter phone number here"
+										th:classappend="${#fields.hasErrors('phone')? 'is-invalid':''}"
+										th:value="${contact.phone}" class="form-control" />
+
+									<div class="invalid-feedback ml-2" th:each="e:${#fields.errors('phone')}"
+										th:text="${e}"></div>
+
+								</div>
+
+
+								<!--Phone Field-->
+								<div class="input-group mt-3">
+
+									<div class="input-group-prepend">
+
+										<div class="input-group-text">
+											<i class="fa-solid fa-at"></i>
+										</div>
+
+									</div>
+
+									<input type="email" id="email" name="email" placeholder="Enter email here"
+										th:classappend="${#fields.hasErrors('email')? 'is-invalid':''}"
+										th:value="${contact.email}" class="form-control" />
+
+									<div class="invalid-feedback ml-2" th:each="e:${#fields.errors('email')}"
+										th:text="${e}"></div>
+
+								</div>
+
+
+								<!--work  Field-->
+								<div class="input-group mt-3">
+
+									<div class="input-group-prepend">
+
+										<div class="input-group-text">
+											<i class="fa fa-briefcase"></i>
+										</div>
+
+									</div>
+
+									<input type="work" id="work" name="work" placeholder="Enter work here"
+										th:classappend="${#fields.hasErrors('work')? 'is-invalid':''}"
+										th:value="${contact.work}" class="form-control" />
+
+									<div class="invalid-feedback ml-2" th:each="e:${#fields.errors('work')}"
+										th:text="${e}"></div>
+
+								</div>
+
+
+								<!--Contact Description-->
+								<div class="form-group mt-3">
+
+									<div class="input-group-prepend">
+
+										<textarea id="mytextarea" placeholder="enter your contact decription"
+											name="description" class="form-control" th:text="${contact.description}"
+											rows="10" style="width: 100%;"></textarea>
+
+									</div>
+
+									<!--Contact Image-->
+									<div class="custom-file mt-3">
+
+										<input type="file" name="profileImage" />
+
+									</div>
+
+
+									<div class="container text-center mt-3">
+										<button class="btn btn-outline-primary">Save Contact</button>
+									</div>
+
+
+							</form>
+
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.1.0/tinymce.min.js" integrity="sha512-Va3PZJRSZ8TlnqUfjkA5YPR57+oIscCVoNGjYK1JYsOTw8VU7517hHqs90/h/YuUm8KZl9iD+Dt8K6T8uAJCqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		
+		<script>
+			tinymce.init({
+				selector: '#mytextarea',
+				// Add any additional configuration options here
+			});
+		</script>
+		
+		<script>
+			  $(document).ready(()=>{
+				$(".item").removeClass("active");
+				$('#add-link').addClass("active");
+			  })
+		  </script>
+
+	</section>
+
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+
+<head>
+
+	<meta charset="UTF-8" />
+	<title>home page</title>
+
+</head>
+
+<body>
+
+	<section>
+
+		<div class="container">
+			<div class="card">
+				<div class="card-body">
+
+					<div class="container text-center">
+						<img src="" style="height:200px; width: 200px;" class="my_profile_picture"
+							th:src="${user.imageUrl}!=null ? @{'/img/'+${user.imageUrl}} : @{'/img/profile.png'}"
+							alt="profile_photo" />
+					</div>
+
+					<h1 th:text="${user.name}" class="text-center mt-3"></h1>
+					<table class="table text-center mt-4">
+						<thead>
+							<tr>
+								<th scope="col">#UserId</th>
+								<th scope="col">SCMUSER <span th:text="${user.id}"></span></th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">Email</th>
+								<td><span th:text="${user.email}"></span></td>
+							</tr>
+							<tr>
+								<th scope="row">Role</th>
+								<td><span th:text="${user.role}"></span></td>
+							</tr>
+							<tr>
+								<th scope="row">Acount Active</th>
+								<td><span th:text="${user.enabled}"></span></td>
+							</tr>
+							<tr>
+								<th scope="row">About</th>
+								<td><span th:text="${user.about}"></span></td>
+							</tr>
+						</tbody>
+
+					</table>
+					
+					<!--Need to modify code to  update and delete user data it will now delete contact so chnage it -->
+					<!--Update button-->
+					<div class="container mt-3">
+						<button th:onclick="|deleteContact(${user.id})|"
+							class="btn btn-danger btn-sm btn-block">Delete</button>
+
+						<form method="post" th:action="@{'/user/update-contact/'+${user.id}}" class="mt-2">
+							<button type="submit" class="btn btn-success btn-block btn-sm">Update</button>
+						</form>
+
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			  $(document).ready(()=>{
+				$(".item").removeClass("active");
+				$('#profile-link').addClass("active");
+			  })
+		  </script>
+
+	</section>
+
+</body>
+
+</html>
